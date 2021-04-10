@@ -9,13 +9,14 @@ namespace PasswordAuthentication
 {
     class Passwords
     {
-        public Dictionary<string, string> UserPasswords = new Dictionary<string, string>();
        
+        public Dictionary<string, string> UserPasswords = new Dictionary<string, string>();
         public Passwords()
         {
             UserPasswords.Add("Admin", "Plus" +
                 "Ultra");
         }
+
         // Checks array for password 
         public void Authentication(Dictionary<string, string> Dictionary, string username, string password)
         {
@@ -33,11 +34,13 @@ namespace PasswordAuthentication
                 }
                 
             }
+          else
+                Console.WriteLine("User does not exist");
 
         }
 
         //Create new User and Password pair
-        public void NewUser(Dictionary<string, string> Dictionary, string username, string password) 
+        public void NewUser(Dictionary<string, string> Dictionary, string username, string password, string plainPassword) 
         {
             //To Do
             if (Dictionary.ContainsKey(username))
@@ -47,6 +50,9 @@ namespace PasswordAuthentication
             else
             {
                 Dictionary.Add(username, password);
+                Console.WriteLine("Account Sucessfully Generated");
+
+                Console.WriteLine($"UserName: {username}  \n Password: {plainPassword}\n Encrypted Password: {password}");
             }
           
         }
@@ -58,7 +64,8 @@ namespace PasswordAuthentication
             Dictionary<string, string> keyValuePairs = Dictionary;
             foreach(KeyValuePair<string,string> kvp in keyValuePairs)
             {
-                Console.WriteLine($"Username = {kvp.Key} Password= {kvp.Value} ");
+                Console.WriteLine($"Username = {kvp.Key}\n Password = {kvp.Value} ");
+                Console.WriteLine();
             }
         }
     }
